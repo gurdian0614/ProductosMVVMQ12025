@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProductosMVVMQ12025.Views.AddEditView"
+             xmlns:viewModel="clr-namespace:ProductosMVVMQ12025.ViewModels"
+             x:DataType="viewModel:AddEditViewModel"
+             Title="">
+    <VerticalStackLayout>
+        <VerticalStackLayout Padding="30" Spacing="5">
+            <Label Text="Codigo:" />
+            <Entry Text="{Binding Codigo}" Keyboard="Text" />
+
+            <Label Text="Nombre:" />
+            <Entry Text="{Binding Nombre}" Keyboard="Text" />
+
+            <Label Text="Cantidad:" />
+            <Entry Text="{Binding Cantidad}" Keyboard="Numeric" />
+
+            <Label Text="Precio:" />
+            <Entry Text="{Binding Precio}" Keyboard="Numeric" />
+
+            <Button Text="Guardar" Command="{Binding AddUpdateCommand}" BackgroundColor="Green" />
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

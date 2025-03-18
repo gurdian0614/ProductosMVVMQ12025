@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProductosMVVMQ12025.Views.MainView"
+             xmlns:viewModel="clr-namespace:ProductosMVVMQ12025.ViewModels"
+             x:DataType="viewModel:MainViewModel"
+             xmlns:model="clr-namespace:ProductosMVVMQ12025.Models"
+             Title="">
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+            <Button Text="Agregar Producto" Command="{Binding GoToAddEditViewCommand}" />
+
+            <Grid Margin="5,5,5,5" RowDefinitions="Auto" ColumnDefinitions="*,*,*,*">
+                <Label Text="Código" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
+                <Label Text="Nombre" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="1" />
+                <Label Text="Cantidad" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="2" />
+                <Label Text="Precio" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="3" />
+            </Grid>
+            <CollectionView ItemsSource="{Binding ProductoCollection}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Producto">
+                        <Grid RowSpacing="0" RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*,*,*,*" VerticalOptions="FillAndExpand">
+                            <Label Text="{Binding Codigo}" Grid.Row="1" Grid.Column="0" />
+                            <Label Text="{Binding Nombre}" Grid.Row="1" Grid.Column="1" />
+                            <Label Text="{Binding Cantidad}" Grid.Row="1" Grid.Column="2" />
+                            <Label Text="{Binding Precio}" Grid.Row="1" Grid.Column="3" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModel:MainViewModel}},Path=SelectCommand}" CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

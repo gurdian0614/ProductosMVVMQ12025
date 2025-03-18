@@ -1,4 +1,6 @@
-﻿namespace ProductosMVVMQ12025
+﻿using ProductosMVVMQ12025.Views;
+
+namespace ProductosMVVMQ12025
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new MainView());
         }
     }
 }
