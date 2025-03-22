@@ -13,6 +13,9 @@ namespace ProductosMVVMQ12025.ViewModels
         [ObservableProperty]
         private ObservableCollection<Producto> productoCollection = new ObservableCollection<Producto>();
 
+        [ObservableProperty]
+        private string buscarProducto;
+
         private readonly ProductoService _service;
 
         public MainViewModel()
@@ -92,6 +95,36 @@ namespace ProductosMVVMQ12025.ViewModels
             }
             catch (Exception ex) {
                 Alerta("ERROR", ex.Message);
+            }
+        }
+
+        [RelayCommand]
+        private void Buscar()
+        {
+            try
+            {
+                ProductoCollection.Clear();
+                var resultado = _service.GetAll(BuscarProducto);
+
+                foreach (var producto in resultado)
+                {
+                    ProductoCollection.Add(producto);
+                }
+            }
+            catch (Exception ex) {
+                 Alerta("ERROR", ex.Message);
+            }
+            
+        }
+
+        partial void OnBuscarProductoChanged(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                GetAll();
+            } else
+            {
+                Buscar();
             }
         }
     }

@@ -7,8 +7,10 @@
              xmlns:model="clr-namespace:ProductosMVVMQ12025.Models"
              Title="">
     <ScrollView>
-        <VerticalStackLayout Padding="10">
+        <VerticalStackLayout Padding="10" Spacing="15">
             <Button Text="Agregar Producto" Command="{Binding GoToAddEditViewCommand}" />
+
+            <SearchBar Placeholder="Buscar" Text="{Binding BuscarProducto}" SearchCommand="{Binding BuscarCommand}" />
 
             <Grid Margin="5,5,5,5" RowDefinitions="Auto" ColumnDefinitions="*,*,*,*">
                 <Label Text="Código" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />

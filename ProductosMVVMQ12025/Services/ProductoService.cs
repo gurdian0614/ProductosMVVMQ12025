@@ -15,9 +15,17 @@ namespace ProductosMVVMQ12025.Services
             _connection.CreateTable<Producto>();
         }
 
-        public List<Producto> GetAll()
+        public List<Producto> GetAll(string Filtro = "")
         {
-            return _connection.Table<Producto>().ToList();
+            // Validate if parameter is null or empty
+            if (string.IsNullOrEmpty(Filtro))
+            {
+                return _connection.Table<Producto>().ToList();
+            }
+
+            return _connection.Table<Producto>()
+                .Where(producto => producto.Codigo.ToLower().Contains(Filtro.ToLower()) || producto.Nombre.ToLower().Contains(Filtro.ToLower()))
+                .ToList();            
         }
 
         public int Insert(Producto Producto)
